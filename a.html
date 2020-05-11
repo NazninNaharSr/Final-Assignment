@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<style>
+table,th,td {
+  border : 1px solid black;
+  border-collapse: collapse;
+  text-align: center
+}
+th,td {
+  padding: 5px;
+  text-align: center;
+  font-family: verdanda;
+}
+h1,u{
+  color: green;
+  text-align: center;
+}
+form{
+  text-align: center
+}
+</style>
+<body>
+
+<h1><u>The Districts of the Divison</u></h1>
+
+<form action=""> 
+<select name="district" onchange="showDivison(this.value)">
+<option value="">Select a divison:</option>
+<option value="Dhaka">Dhaka</option>
+<option value="Rajshahi ">Rajshahi</option>
+<option value="Chittagong">Chittagong</option>
+<option value="Sylhet">Sylhet</option>
+<option value="Rangpur">Rangpur</option>
+<option value="Barisal">Barisal</option>
+<option value="Khulna">Khulna</option>
+<option value="Mymensingh">Mymensingh</option>
+
+</select>
+</form>
+<br>
+<div id="txtHint">Districts are...</div>
+
+<script>
+function showDivison(str) {
+  var xhttp;    
+  if (str == "") {
+    document.getElementById("txtHint").innerHTML = "";
+    return;
+  }
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("txtHint").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "d.php?q="+str, true);
+  xhttp.send();
+}
+</script>
+
+</body>
+</html>
